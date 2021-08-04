@@ -13,10 +13,10 @@ jobs:
       run: docker build . --file Dockerfile --tag airflow:${{ github.sha }}
     - name: Running tests
       run: docker run --rm airflow:${{ github.sha }} bash -c "airflow db init && pytest include/tests"
-    #- name: Publish to Astronomer.io
-    #  uses: elgohr/Publish-Docker-Github-Action@2.6
-    #  with:
-    #    name: infrared-photon-7780/airflow:ci-${{ github.sha }}
-    #    username: _
-    #    password: ${{ secrets.SERVICE_ACCOUNT_KEY }}
-    #    registry: registry.gcp0001.us-east4.astronomer.io
+    - name: Publish to Astronomer.io
+      uses: elgohr/Publish-Docker-Github-Action@2.6
+      with:
+        name: nuclear-jets-5546/airflow:ci-${{ github.sha }}
+        username: _
+        password: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+        registry: registry.gcp0001.us-east4.astronomer.io
